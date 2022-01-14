@@ -152,7 +152,7 @@ public class ContaDAO {
 		conta.setPaga(rs.getBoolean("paga"));
 		conta.setValor(rs.getDouble("valor"));
 
-		Date data = rs.getDate("dataPagamento");
+		Date data = rs.getDate("data_pagamento");
 		if (data != null) {
 			Calendar dataPagamento = Calendar.getInstance();
 			dataPagamento.setTime(data);

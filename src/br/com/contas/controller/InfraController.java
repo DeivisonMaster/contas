@@ -26,11 +26,11 @@ public class InfraController {
 				+ "tipo VARCHAR(20))");
 		st11.execute();
 		
-//		PreparedStatement st22 = conexao.prepareStatement("create table usuarios (login VARCHAR(255),senha VARCHAR(255));");
-//		st22.execute();
+		PreparedStatement st22 = conexao.prepareStatement("create table usuarios (login VARCHAR(255),senha VARCHAR(255));");
+		st22.execute();
 
-//		PreparedStatement st3 = conexao.prepareStatement("insert into usuarios (login, senha) values ('admin', '123');");
-//		st3.execute();
+		PreparedStatement st3 = conexao.prepareStatement("insert into usuarios (login, senha) values ('admin', '123');");
+		st3.execute();
 		
 		conexao.close();
 		
