@@ -25,6 +25,14 @@ public class ContaController {
 		return "cadastroConta";
 	}
 	
+	@RequestMapping("/exclui")
+	public String remove(Conta conta) {
+		ContaDAO dao = new ContaDAO();
+		dao.remove(conta);
+		
+		return "redirect:listaConta";
+	}
+	
 	@RequestMapping("/listaConta")
 	public ModelAndView listaConta() {
 		ContaDAO dao = new ContaDAO();
