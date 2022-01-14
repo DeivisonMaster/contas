@@ -2,7 +2,10 @@ package br.com.contas.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,15 +17,18 @@ public class ContaController {
 	
 	@RequestMapping("/cadastrar")
 	public String cadastra(Conta conta) {
-		return "cadastroConta";
+		return "conta/cadastroConta";
 	}
 	
 	@RequestMapping("/adicionaConta")
-	public String cadastraConta(Conta conta) {
-		ContaDAO dao = new ContaDAO();
+	public String cadastraConta(@Valid Conta conta, BindingResult validacao) {
+		if(validacao.hasErrors()) {
+			return "conta/cadastroConta";
+		}
 		
+		ContaDAO dao = new ContaDAO();
 		dao.adiciona(conta);
-		return "cadastroConta";
+		return "conta/cadastroConta";
 	}
 	
 	@RequestMapping("/exclui")
