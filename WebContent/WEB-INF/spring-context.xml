@@ -14,6 +14,10 @@
 	
 	<!-- habilita uso das anotações além do XML -->
 	<mvc:annotation-driven />
+	
+	<mvc:interceptors>
+		<bean class="br.com.contas.interceptor.AutorizadorInterceptor"/>
+	</mvc:interceptors>
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" /> <!-- mapeamento da pasta das views -->
