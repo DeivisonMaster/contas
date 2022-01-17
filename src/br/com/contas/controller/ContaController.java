@@ -1,10 +1,10 @@
 package br.com.contas.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +17,13 @@ import br.com.contas.model.Conta;
 @Controller
 public class ContaController {
 	
+	private ContaDAO dao;
+	
+	@Autowired
+	public ContaController(ContaDAO dao) {
+		this.dao = dao;
+	}
+	
 	@RequestMapping("/cadastrar")
 	public String cadastra(Conta conta) {
 		return "conta/cadastroConta";
@@ -28,14 +35,12 @@ public class ContaController {
 			return "conta/cadastroConta";
 		}
 		
-		ContaDAO dao = new ContaDAO();
 		dao.adiciona(conta);
 		return "conta/cadastroConta";
 	}
 	
 	@RequestMapping("/exclui")
 	public String remove(Conta conta) {
-		ContaDAO dao = new ContaDAO();
 		dao.remove(conta);
 		
 		return "redirect:listaConta";
@@ -43,7 +48,6 @@ public class ContaController {
 	
 	@RequestMapping("/pagarConta")
 	public @ResponseBody String pagar(Conta conta) {
-		ContaDAO dao = new ContaDAO();
 		dao.paga(conta.getId());
 		conta = dao.buscaPorId(conta.getId());
 		return conta.isPaga() == true ? "Pago" : "Não pago";
@@ -51,7 +55,6 @@ public class ContaController {
 	
 	@RequestMapping("/listaConta")
 	public ModelAndView listaConta() {
-		ContaDAO dao = new ContaDAO();
 		ModelAndView mv = new ModelAndView("conta/lista");
 		
 		List<Conta> contas = dao.lista();

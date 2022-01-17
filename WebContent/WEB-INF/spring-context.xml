@@ -15,9 +15,18 @@
 	<!-- habilita uso das anotações além do XML -->
 	<mvc:annotation-driven />
 	
+	<!-- configurando interceptador de login no sistema -->
 	<mvc:interceptors>
 		<bean class="br.com.contas.interceptor.AutorizadorInterceptor"/>
 	</mvc:interceptors>
+	
+	<!-- datasource -->
+	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost/conta"/>
+		<property name="username" value="root"/>
+		<property name="password" value="secret"/>
+	</bean>
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" /> <!-- mapeamento da pasta das views -->
