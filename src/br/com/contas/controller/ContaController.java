@@ -1,12 +1,14 @@
 package br.com.contas.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contas.dao.ContaDAO;
@@ -37,6 +39,14 @@ public class ContaController {
 		dao.remove(conta);
 		
 		return "redirect:listaConta";
+	}
+	
+	@RequestMapping("/pagarConta")
+	public @ResponseBody String pagar(Conta conta) {
+		ContaDAO dao = new ContaDAO();
+		dao.paga(conta.getId());
+		conta = dao.buscaPorId(conta.getId());
+		return conta.isPaga() == true ? "Pago" : "Não pago";
 	}
 	
 	@RequestMapping("/listaConta")

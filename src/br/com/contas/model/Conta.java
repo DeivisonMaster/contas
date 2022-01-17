@@ -1,5 +1,6 @@
 package br.com.contas.model;
 
+import java.beans.Transient;
 import java.util.Calendar;
 
 import javax.validation.constraints.NotNull;
@@ -19,7 +20,7 @@ public class Conta {
 	private Calendar dataPagamento;
 	
 	private TipoDaConta tipo;
-
+	
 	public Long getId() {
 		return id;
 	}

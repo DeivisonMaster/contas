@@ -130,7 +130,7 @@ public class ContaDAO {
 			throw new IllegalStateException("Id da conta nao deve ser nula.");
 		}
 
-		String sql = "update contas set paga = ?, dataPagamento = ? where id = ?";
+		String sql = "update contas set paga = ?, data_pagamento = ? where id = ?";
 		PreparedStatement stmt;
 		try {
 			stmt = connection.prepareStatement(sql);
